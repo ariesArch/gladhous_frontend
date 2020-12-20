@@ -17,15 +17,14 @@
               <v-text-field
                 v-model="search"
                 append-icon="mdi-magnify"
-                label="Search"
-                single-line
+                label="Search in cities"
                 hide-details
               />
               <v-spacer />
               <v-btn
                 color="primary"
                 dark
-                class="mb-2"
+                class="mb-4"
                 @click="onCreate"
               >
                 New City

@@ -2,10 +2,7 @@
   <v-dialog v-model="isOpenDialog" max-width="600px">
     <v-card>
       <v-card-title>Create New City</v-card-title>
-      <validation-observer
-        ref="observer"
-        v-slot="{ invalid }"
-      >
+      <validation-observer ref="observer" v-slot="{ invalid }">
         <v-form @submit.prevent="SaveForm">
           <v-card-text>
             <validation-provider
@@ -37,18 +34,22 @@
               name="is_available_d2d"
               rules="required"
             >
-              <v-radio-group v-model="city.is_available_d2d" :error-messages="errors" required>
+              <v-radio-group
+                v-model="city.is_available_d2d"
+                :error-messages="errors"
+                required
+              >
                 <template v-slot:label>
                   <div>Is available door to door?</div>
                 </template>
-                <v-radio value="true">
+                <v-radio :value="true">
                   <template v-slot:label>
                     <div>
                       <strong class="success--text">Yes</strong>
                     </div>
                   </template>
                 </v-radio>
-                <v-radio value="false">
+                <v-radio :value="false">
                   <template v-slot:label>
                     <div>
                       <strong class="success--text">No</strong>
@@ -59,7 +60,7 @@
             </validation-provider>
             <v-card-actions>
               <v-spacer />
-              <v-btn color="warning" @click="isOpenDialog=fasle">Cancel</v-btn>
+              <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
               <v-btn color="info" :disabled="invalid" @click="SaveForm()">Save</v-btn>
             </v-card-actions>
           </v-card-text>
@@ -77,7 +78,7 @@ export default {
         name_mm: '',
         name_en: '',
         description: '',
-        is_available_d2d: ''
+        is_available_d2d: false
       }
     };
   },
