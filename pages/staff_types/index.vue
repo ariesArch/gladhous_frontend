@@ -1,21 +1,21 @@
 <template>
   <v-row>
     <v-col>
-      <ZoneForm />
+      <StaffTypeForm />
       <client-only>
-        <v-data-table :headers="headers" :items="zones" :search="search">
+        <v-data-table :headers="headers" :items="stafftypes" :search="search">
           <template v-slot:top>
             <v-toolbar flat>
-              <v-toolbar-title>Zones List</v-toolbar-title>
+              <v-toolbar-title>Stafttype List</v-toolbar-title>
               <v-spacer />
               <v-text-field
                 v-model="search"
                 append-icon="mdi-magnify"
-                label="Search in zones"
+                label="Search in stafftype"
                 hide-details
               />
               <v-spacer />
-              <v-btn color="primary" dark class="mb-4" @click="onCreate">New Zone</v-btn>
+              <v-btn color="primary" dark class="mb-4" @click="onCreate">New Stafftype</v-btn>
             </v-toolbar>
           </template>
           <template v-slot:[`item.actions`]="{ item }">
@@ -28,27 +28,24 @@
   </v-row>
 </template>
 <script>
-import ZoneForm from '@/components/Forms/Zone/ZoneForm.vue';
+import StaffTypeForm from '@/components/Forms/StaffType/StaffTypeForm.vue';
 export default {
   components: {
-    ZoneForm
+    StaffTypeForm
   },
   async asyncData ({ $content }) {
-    const cities = await $content('cities')
-      .sortBy('name_mm', 'asc')
+    const stafftypes = await $content('staff_types')
+      .sortBy('type_mm', 'asc')
       .fetch();
-    const zones = await $content('zones')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    return { cities, zones };
+    return { stafftypes };
   },
   data: () => {
     return {
       search: '',
       headers: [
-        { text: 'Name', value: 'name_mm' },
-        { text: 'Name in English', value: 'name_en' },
-        { text: 'City Name', value: 'city.name' },
+        { text: 'Name', value: 'type_mm' },
+        { text: 'Name in English', value: 'type_en' },
+        { text: 'Description', value: 'description' },
         { text: 'Actions', value: 'actions' }
       ]
     };

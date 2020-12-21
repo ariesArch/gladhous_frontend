@@ -1,11 +1,8 @@
 <template>
   <v-dialog v-model="isOpenDialog" max-width="600px">
     <v-card>
-      <v-card-title>Create New Zone</v-card-title>
-      <validation-observer
-        ref="observer"
-        v-slot="{ invalid }"
-      >
+      <v-card-title>{{ dialogTitle }}</v-card-title>
+      <validation-observer ref="observer" v-slot="{ invalid }">
         <v-form @submit.prevent="SaveForm">
           <v-card-text>
             <validation-provider
@@ -53,7 +50,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn color="warning" @click="isOpenDialog=false">Cancel</v-btn>
+            <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
             <v-btn color="info" :disabled="invalid" @click="SaveForm()">Save</v-btn>
           </v-card-actions>
         </v-form>
@@ -66,6 +63,7 @@ export default {
   data () {
     return {
       isOpenDialog: false,
+      dialogTitle: 'Create New Zone',
       zone: {
         name_mm: '',
         name_en: '',
@@ -76,8 +74,13 @@ export default {
     };
   },
   mounted () {
+    this.cities = this.$parent.cities;
     this.$parent.$on('createForm', () => {
-      this.cities = this.$parent.cities;
+      this.isOpenDialog = true;
+    });
+    this.$parent.$on('editForm', (item) => {
+      this.zone = item;
+      this.dialogTitle = `Edit Zone (${item.name_mm})`;
       this.isOpenDialog = true;
     });
   },

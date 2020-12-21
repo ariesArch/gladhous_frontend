@@ -20,13 +20,6 @@
             name="zone_id"
           />
           <v-autocomplete
-            v-model="city_id"
-            v-validate="'required'"
-            :items="items"
-            label="Choose City"
-            name="city_id"
-          />
-          <v-autocomplete
             v-model="department_id"
             v-validate="'required'"
             :items="items"
@@ -68,7 +61,15 @@
 export default {
   data () {
     return {
-      isOpenDialog: false
+      isOpenDialog: false,
+      staff: {
+        city_id: '',
+        zone_id: '',
+        branch_id: '',
+        department_id: '',
+        role_id: '',
+        stafftype_id: ''
+      }
     };
   },
   mounted () {

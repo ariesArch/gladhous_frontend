@@ -45,14 +45,14 @@
                 <v-radio :value="true">
                   <template v-slot:label>
                     <div>
-                      <strong class="success--text">Yes</strong>
+                      <strong>Yes</strong>
                     </div>
                   </template>
                 </v-radio>
                 <v-radio :value="false">
                   <template v-slot:label>
                     <div>
-                      <strong class="success--text">No</strong>
+                      <strong>No</strong>
                     </div>
                   </template>
                 </v-radio>
