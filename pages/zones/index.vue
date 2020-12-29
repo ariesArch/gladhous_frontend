@@ -18,10 +18,25 @@
               <v-btn color="primary" dark class="mb-4" @click="onCreate">New Zone</v-btn>
             </v-toolbar>
           </template>
-          <template v-slot:[`item.actions`]="{ item }">
+          <!-- <template v-slot:[`item.name_mm`]="{ item }">
+            {{ item.name_mm }}({{ item.name_en }})
+          </template>
+          <template v-slot:[`item.city.name_mm`]="{ item }">
+            {{ item.city.name_mm }}({{ item.city.name_en }})
+          </template> -->
+          <!-- <template v-slot:[`item.actions`]="{ item }">
             <v-icon color="info" @click="onEdit(item)">mdi-pencil</v-icon>
             <v-icon color="red" class="mr-4" @click="onDelete(item)">mdi-delete</v-icon>
-          </template>
+          </template> -->
+          <!-- <template v-slot:[`item`]="{ item }">
+            <tr>
+              <td>{{ item.name_mm }}({{ item.name_en }})</td>
+              <td>{{ item.city.name_mm }}({{ item.city.name_en }})</td>
+              <td>
+                <v-icon color="info" @click="onEdit(item)">mdi-pencil</v-icon>
+                <v-icon color="red" class="mr-4" @click="onDelete(item)">mdi-delete</v-icon></td>
+            </tr>
+          </template> -->
         </v-data-table>
       </client-only>
     </v-col>
@@ -33,22 +48,25 @@ export default {
   components: {
     ZoneForm
   },
-  async asyncData ({ $content }) {
-    const cities = await $content('cities')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const zones = await $content('zones')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    return { cities, zones };
+  // async asyncData ({ $content }) {
+  //   const cities = await $content('cities')
+  //     .sortBy('name_mm', 'asc')
+  //     .fetch();
+  //   const zones = await $content('zones')
+  //     .sortBy('name_mm', 'asc')
+  //     .fetch();
+  //   return { cities, zones };
+  // },
+  async asyncData ({ $axios }) {
+    const zones = await $axios.$get('http://gladhouse_backend.local/api/zones');
+    return { zones };
   },
   data: () => {
     return {
       search: '',
       headers: [
         { text: 'Name', value: 'name_mm' },
-        { text: 'Name in English', value: 'name_en' },
-        { text: 'City Name', value: 'city.name' },
+        { text: 'City Name', value: 'city.name_mm' },
         { text: 'Actions', value: 'actions' }
       ]
     };

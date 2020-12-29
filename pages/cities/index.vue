@@ -58,11 +58,15 @@ export default {
   components: {
     CityForm
   },
-  async asyncData ({ $content, params }) {
-    const cities = await $content('cities', params.slug)
-      .sortBy('createdAt', 'desc')
-      .fetch();
-    console.log(cities);
+  // async asyncData ({ $content, params }) {
+  //   const cities = await $content('cities', params.slug)
+  //     .sortBy('createdAt', 'desc')
+  //     .fetch();
+  //   console.log(cities);
+  //   return { cities };
+  // },
+  async asyncData ({ $axios }) {
+    const cities = await $axios.$get('http://gladhouse_backend.local/api/cities');
     return { cities };
   },
   data: () => {
