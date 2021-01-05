@@ -13,8 +13,10 @@ module.exports = {
   ],
   plugins: [
   ],
+/* eslint-disable indent */
   // add your custom rules here
   rules: {
+    indent: ['error', 2],
     'jsx-quotes': [2, 'prefer-single'],
     semi: ['error', 'always'],
     'no-console': 'off',
@@ -23,4 +25,4 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off'
   }
-}
+};

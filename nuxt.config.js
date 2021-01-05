@@ -20,7 +20,8 @@ export default {
   plugins: [
     '@plugins/vuetify',
     // '@plugins/vee-validate'
-    { src: '~plugins/vee-validate.js', ssr: true }
+    { src: '~plugins/vee-validate.js', ssr: true },
+    '@plugins/api'
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -40,10 +41,18 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
-
+  // axios: {},
+  axios: {
+    baseURL: 'http://gladhouse_backend.test/api/'// Used as fallback if no runtime config is provided
+  },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    transpile: ['vee-validate']
+    transpile: ['vee-validate'],
+    // analyze: true
+    build: {
+      vendor: [
+        'api'
+      ]
+    }
   }
 };

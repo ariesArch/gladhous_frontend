@@ -3,34 +3,33 @@
     <v-col>
       <CityForm />
       <client-only>
+        <v-toolbar
+          flat
+        >
+          <v-toolbar-title>Cities List</v-toolbar-title>
+          <v-spacer />
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search in cities"
+            hide-details
+          />
+          <v-spacer />
+          <v-btn
+            color="primary"
+            dark
+            class="mb-4"
+            @click="onCreate"
+          >
+            New City
+          </v-btn>
+        </v-toolbar>
+
         <v-data-table
           :headers="headers"
           :items="cities"
           :search="search"
         >
-          <template v-slot:top>
-            <v-toolbar
-              flat
-            >
-              <v-toolbar-title>Cities List</v-toolbar-title>
-              <v-spacer />
-              <v-text-field
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search in cities"
-                hide-details
-              />
-              <v-spacer />
-              <v-btn
-                color="primary"
-                dark
-                class="mb-4"
-                @click="onCreate"
-              >
-                New City
-              </v-btn>
-            </v-toolbar>
-          </template>
           <template v-slot:[`item.actions`]="{ item }">
             <v-icon
               small
@@ -46,7 +45,6 @@
               mdi-delete
             </v-icon>
           </template>
-        </v-data-table></client-only></v-col></v-row></v-col></client-only></v-data-table></template>
         </v-data-table>
       </client-only>
     </v-col>
@@ -54,6 +52,7 @@
 </template>
 <script>
 import CityForm from '@/components/Forms/City/CityForm.vue';
+
 export default {
   components: {
     CityForm
@@ -65,12 +64,17 @@ export default {
   //   console.log(cities);
   //   return { cities };
   // },
-  async asyncData ({ $axios }) {
-    const cities = await $axios.$get('http://gladhouse_backend.local/api/cities');
-    return { cities };
+  // async asyncData ({$$axios}) {
+  //   const cities = await $axios.$get('http://gladhouse_backend.local/api/cities');
+  //   return { cities };
+  // },
+  async fetch () {
+    const cities = await this.$api.getCitiesList(this);
+    this.cities = cities;
   },
   data: () => {
     return {
+      cities: [],
       search: '',
       headers: [
         { text: 'Name', value: 'name_mm' },
