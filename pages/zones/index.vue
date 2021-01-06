@@ -57,12 +57,17 @@ export default {
   //     .fetch();
   //   return { cities, zones };
   // },
-  async asyncData ({ $axios }) {
-    const zones = await $axios.$get('http://gladhouse_backend.local/api/zones');
-    return { zones };
+  // async asyncData ({ $axios }) {
+  //   const zones = await $axios.$get('http://gladhouse_backend.test/api/zones');
+  //   return { zones };
+  // },
+  async fetch () {
+    const zones = await this.$api.getZonesList(this);
+    this.zones = zones;
   },
   data: () => {
     return {
+      zones: [],
       search: '',
       headers: [
         { text: 'Name', value: 'name_mm' },

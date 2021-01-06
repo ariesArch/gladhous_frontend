@@ -57,11 +57,15 @@ export default {
   components: {
     DepartmentForm
   },
-  async asyncData ({ $content, params }) {
-    const departments = await $content('departments', params.slug)
-      .sortBy('createdAt', 'desc')
-      .fetch();
+  //   async asyncData ({ $content, params }) {
+  //     const departments = await $content('departments', params.slug)
+  //       .sortBy('createdAt', 'desc')
+  //       .fetch();
 
+  //     return { departments };
+  //   },
+  async asyncData ({ $axios }) {
+    const departments = await $axios.$get('http://gladhouse_backend.local/api/departments');
     return { departments };
   },
   data: () => {
