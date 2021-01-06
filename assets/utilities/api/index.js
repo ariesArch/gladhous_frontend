@@ -1,6 +1,6 @@
-import cities from './cities';
-import zones from './zones';
+import City from './City';
+import Zone from './Zone';
 export default {
-  ...cities,
-  ...zones
+  ...City,
+  ...Zone
 };

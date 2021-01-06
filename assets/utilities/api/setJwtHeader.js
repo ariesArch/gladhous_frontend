@@ -1,8 +1,7 @@
-const setJwtHeaders = jwt => ({
-    headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`
-    }
-})
+const setJwtHeader = () => ({
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
 
-export default setJwtHeaders
+export default setJwtHeader;
