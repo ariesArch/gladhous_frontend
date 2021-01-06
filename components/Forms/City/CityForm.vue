@@ -61,7 +61,7 @@
             <v-card-actions>
               <v-spacer />
               <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
-              <v-btn color="info" :disabled="invalid" @click="SaveForm()">Save</v-btn>
+              <v-btn color="info" :disabled="invalid" @click="saveCity()">Save</v-btn>
             </v-card-actions>
           </v-card-text>
         </v-form>
@@ -92,7 +92,9 @@ export default {
     });
   },
   methods: {
-    SaveForm () {
+    async saveCity () {
+      const { data } = await this.$api.createNewCity(this, this.city);
+      console.log(data);
       this.isOpenDialog = false;
     }
   }
