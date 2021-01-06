@@ -33,26 +33,30 @@ export default {
   components: {
     StaffForm
   },
-  async asyncData ({ $content }) {
-    const cities = await $content('cities')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const zones = await $content('zones')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const departments = await $content('departments')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const roles = await $content('roles')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const branches = await $content('branches')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const staffs = await $content('staffs')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    return { staffs, cities, zones, departments, roles, branches };
+  //   async asyncData ({ $content }) {
+  //     const cities = await $content('cities')
+  //       .sortBy('name_mm', 'asc')
+  //       .fetch();
+  //     const zones = await $content('zones')
+  //       .sortBy('name_mm', 'asc')
+  //       .fetch();
+  //     const departments = await $content('departments')
+  //       .sortBy('name_mm', 'asc')
+  //       .fetch();
+  //     const roles = await $content('roles')
+  //       .sortBy('name_mm', 'asc')
+  //       .fetch();
+  //     const branches = await $content('branches')
+  //       .sortBy('name_mm', 'asc')
+  //       .fetch();
+  //     const staffs = await $content('staffs')
+  //       .sortBy('name_mm', 'asc')
+  //       .fetch();
+  //     return { staffs, cities, zones, departments, roles, branches };
+  //   },
+  async asyncData ({ $axios }) {
+    const staffs = await $axios.$get('http://gladhouse_backend.local/api/staffs ');
+    return { staffs };
   },
   data: () => {
     return {
