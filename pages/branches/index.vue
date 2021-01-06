@@ -33,26 +33,29 @@ export default {
   components: {
     BranchForm
   },
-  async asyncData ({ $content }) {
-    const cities = await $content('cities')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const zones = await $content('zones')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const branches = await $content('branches')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    return { branches, cities, zones };
+  // async asyncData ({ $content }) {
+  //   const cities = await $content('cities')
+  //     .sortBy('name_mm', 'asc')
+  //     .fetch();
+  //   const zones = await $content('zones')
+  //     .sortBy('name_mm', 'asc')
+  //     .fetch();
+  //   const branches = await $content('branches')
+  //     .sortBy('name_mm', 'asc')
+  //     .fetch();
+  //   return { branches, cities, zones };
+  // },
+  async asyncData ({ $axios }) {
+    const branches = await $axios.$get('http://gladhouse_backend.local/api/branches');
+    return { branches };
   },
   data: () => {
     return {
       search: '',
       headers: [
-        { text: 'City', value: 'city.city_name' },
-        { text: 'Zone', value: 'zone.zone_name' },
+        { text: 'City', value: 'city.name_mm' },
+        { text: 'Zone', value: 'zone.name_mm' },
         { text: 'Name', value: 'name_mm' },
-        { text: 'Name in English', value: 'name_en' },
         { text: 'Description', value: 'description' },
         { text: 'Actions', value: 'actions' }
       ]

@@ -57,11 +57,15 @@ export default {
   components: {
     RoleForm
   },
-  async asyncData ({ $content, params }) {
-    const roles = await $content('roles', params.slug)
-      .sortBy('createdAt', 'desc')
-      .fetch();
+  // async asyncData ({ $content, params }) {
+  //   const roles = await $content('roles', params.slug)
+  //     .sortBy('createdAt', 'desc')
+  //     .fetch();
 
+  //   return { roles };
+  // },
+  async asyncData ({ $axios }) {
+    const roles = await $axios.$get('http://gladhouse_backend.local/api/roles');
     return { roles };
   },
   data: () => {

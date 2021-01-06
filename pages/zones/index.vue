@@ -24,10 +24,10 @@
           <template v-slot:[`item.city.name_mm`]="{ item }">
             {{ item.city.name_mm }}({{ item.city.name_en }})
           </template> -->
-          <!-- <template v-slot:[`item.actions`]="{ item }">
+          <template v-slot:[`item.actions`]="{ item }">
             <v-icon color="info" @click="onEdit(item)">mdi-pencil</v-icon>
             <v-icon color="red" class="mr-4" @click="onDelete(item)">mdi-delete</v-icon>
-          </template> -->
+          </template>
           <!-- <template v-slot:[`item`]="{ item }">
             <tr>
               <td>{{ item.name_mm }}({{ item.name_en }})</td>
