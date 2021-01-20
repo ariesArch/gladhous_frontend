@@ -7,11 +7,11 @@
           <v-card-text>
             <validation-provider
               v-slot="{ errors }"
-              name="name_mm"
+              name="name"
               rules="required"
             >
               <v-text-field
-                v-model="city.name_mm"
+                v-model="city.name"
                 :error-messages="errors"
                 label="Name"
                 required
@@ -19,14 +19,29 @@
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
-              name="name_en"
+              name="name_mm"
               rules="required"
             >
               <v-text-field
-                v-model="city.name_en"
+                v-model="city.name_mm"
                 :error-messages="errors"
-                label="Name in English"
+                label="Name in Myanmar"
                 required
+              />
+            </validation-provider>
+            <validation-provider
+              v-slot="{ errors }"
+              name="description"
+              rules="required"
+            >
+              <v-textarea
+                v-model="city.description"
+                :error-messages="errors"
+                label="Description"
+                required
+                auto-grow
+                outlined
+                shaped
               />
             </validation-provider>
             <validation-provider
@@ -75,8 +90,8 @@ export default {
     return {
       isOpenDialog: false,
       city: {
+        name: '',
         name_mm: '',
-        name_en: '',
         description: '',
         is_available_d2d: false
       }

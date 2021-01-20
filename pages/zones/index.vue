@@ -62,7 +62,7 @@ export default {
   //   return { zones };
   // },
   async fetch () {
-    const zones = await this.$api.getZonesList(this);
+    const zones = await this.$api.getZonesList(this).then(response => response.data);
     this.zones = zones;
   },
   data: () => {

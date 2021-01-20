@@ -7,26 +7,26 @@
           <v-card-text>
             <validation-provider
               v-slot="{ errors }"
-              name="name_mm"
+              name="name"
               rules="required"
             >
               <v-text-field
-                v-model="zone.name_mm"
+                v-model="zone.name"
                 label="Name"
-                name="name_mm"
+                name="name"
                 :error-messages="errors"
                 required
               />
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
-              name="name_en"
+              name="name_mm"
               rules="required"
             >
               <v-text-field
-                v-model="zone.name_en"
-                label="Name in English"
-                name="name_en"
+                v-model="zone.name_mm"
+                label="Name in Myanmar"
+                name="name_mm"
                 :error-messages="errors"
                 required
               />
@@ -51,7 +51,7 @@
           <v-card-actions>
             <v-spacer />
             <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
-            <v-btn color="info" :disabled="invalid" @click="SaveForm()">Save</v-btn>
+            <v-btn color="info" :disabled="invalid" @click="saveZone ()">Save</v-btn>
           </v-card-actions>
         </v-form>
       </validation-observer>
@@ -60,13 +60,17 @@
 </template>
 <script>
 export default {
+  async fetch () {
+    const cities = await this.$api.getCitiesList(this).then(response => response.data);
+    this.cities = cities;
+  },
   data () {
     return {
       isOpenDialog: false,
       dialogTitle: 'Create New Zone',
       zone: {
+        name: '',
         name_mm: '',
-        name_en: '',
         city_id: '',
         description: ''
       },
@@ -85,7 +89,9 @@ export default {
     });
   },
   methods: {
-    SaveForm () {
+    async saveZone () {
+      const { data } = await this.$api.createNewZone(this, this.zone);
+      console.log(data);
       this.isOpenDialog = false;
     }
   }

@@ -45,19 +45,25 @@ export default {
   //     .fetch();
   //   return { branches, cities, zones };
   // },
-  async asyncData ({ $axios }) {
-    const branches = await $axios.$get('http://gladhouse_backend.local/api/branches');
-    return { branches };
+  // async asyncData ({ $axios }) {
+  //   const branches = await $axios.$get('http://gladhouse_backend.local/api/branches');
+  //   return { branches };
+  // },
+  async fetch () {
+    const branches = await this.$api
+      .getBranchesList(this).then(response => response.data);
+    this.branches = branches;
   },
   data: () => {
     return {
       search: '',
+      branches: [],
       headers: [
-        { text: 'City', value: 'city.name_mm' },
-        { text: 'Zone', value: 'zone.name_mm' },
-        { text: 'Name', value: 'name_mm' },
-        { text: 'Description', value: 'description' },
-        { text: 'Actions', value: 'actions' }
+        { text: 'Zone Name', value: 'zone.name_mm' },
+        { text: 'City Name', value: 'city.name_mm' },
+        { text: 'Name', value: 'name' },
+        { text: 'Name_mm', value: 'name_mm' },
+        { text: 'Actions', value: 'actions', sortable: false }
       ]
     };
   },
