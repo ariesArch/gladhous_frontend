@@ -64,9 +64,9 @@ export default {
 
   //   return { roles };
   // },
-  async fetch () {
-    const roles = await this.$api.getRolesList(this).then(response => response.data);
-    this.roles = roles;
+  async asyncData ({ $axios }) {
+    const roles = await $axios.$get('http://gladhouse_backend.local/api/roles');
+    return { roles };
   },
   data: () => {
     return {
