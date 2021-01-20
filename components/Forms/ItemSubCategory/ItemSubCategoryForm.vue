@@ -8,13 +8,25 @@
           <v-card-text>
             <!-- <validation-provider
               v-slot="{ errors }"
-              name="name"
+              name="id"
               rules="required"
             >
               <v-text-field
-                v-model="roles.name"
+                v-model="item_sub_categories.id"
                 :error-messages="errors"
-                label="Name"
+                label="ID"
+                required
+              />
+            </validation-provider> -->
+            <!-- <validation-provider
+              v-slot="{ errors }"
+              name="item_category_id"
+              rules="required"
+            >
+              <v-text-field
+                v-model="item_sub_categories.item_category_id"
+                :error-messages="errors"
+                label="Item_Category_ID"
                 required
               />
             </validation-provider> -->
@@ -24,7 +36,7 @@
               rules="required"
             >
               <v-text-field
-                v-model="roles.name"
+                v-model="item_sub_categories.name"
                 :error-messages="errors"
                 label="Name"
                 required
@@ -36,7 +48,7 @@
               rules="required"
             >
               <v-text-field
-                v-model="roles.name_mm"
+                v-model="item_sub_categories.name_mm"
                 :error-messages="errors"
                 label="Name in English"
                 required
@@ -48,7 +60,7 @@
               rules="required"
             >
               <v-textarea
-                v-model="roles.description"
+                v-model="item_sub_categories.description"
                 :error-messages="errors"
                 label="Description"
                 required
@@ -61,7 +73,7 @@
           <v-card-actions>
             <v-spacer />
             <v-btn color="warning" @click="isOpenDialog=false">Cancel</v-btn>
-            <v-btn color="info" :disabled="invalid" @click="SaveRole ()">Save</v-btn>
+            <v-btn color="info" :disabled="invalid" @click="SaveItemSubCategory ()">Save</v-btn>
           </v-card-actions>
         </v-form>
       </validation-observer>
@@ -74,7 +86,8 @@ export default {
     return {
       isOpenDialog: false,
       dialogTitle: 'Create New Form',
-      roles: {
+      item_sub_categories: {
+        item_category_id: '',
         name: '',
         name_mm: '',
         description: ''
@@ -86,14 +99,14 @@ export default {
       this.isOpenDialog = true;
     });
     this.$parent.$on('editForm', (item) => {
-      this.roles = item;
-      this.dialogTitle = `Edit Role (${item.name_mm})`;
+      this.item_sub_categories = item;
+      this.dialogTitle = `Edit ItemSubCategory (${item.name_mm})`;
       this.isOpenDialog = false;
     });
   },
   methods: {
-    async SaveRole () {
-      const { data } = await this.$api.createNewRole(this, this.roles);
+    async SaveItemSubCategory () {
+      const { data } = await this.$api.createNewItemSubCategory(this, this.item_sub_categories);
       console.log(data);
       this.isOpenDialog = false;
     }

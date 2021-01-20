@@ -31,11 +31,26 @@
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
+              name="description"
+              rules="required"
+            >
+              <v-textarea
+                v-model="city.description"
+                :error-messages="errors"
+                label="Description"
+                required
+                auto-grow
+                outlined
+                shaped
+              />
+            </validation-provider>
+            <validation-provider
+              v-slot="{ errors }"
               name="is_available_d2d"
               rules="required"
             >
               <v-radio-group
-                v-model="city.is_available_d2d"
+                v-model="cities.is_available_d2d"
                 :error-messages="errors"
                 required
               >
@@ -87,15 +102,15 @@ export default {
       this.isOpenDialog = true;
     });
     this.$parent.$on('editForm', (item) => {
-      this.city = item;
+      this.cities = item;
       this.isOpenDialog = true;
     });
   },
   methods: {
     async saveCity () {
-      const { data } = await this.$api.createNewCity(this, this.city);
+      const { data } = await this.$api.createNewCity(this, this.cities);
       console.log(data);
-      this.isOpenDialog = false;
+      this.isOpenDialog = true;
     }
   }
 };

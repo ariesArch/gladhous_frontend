@@ -64,8 +64,8 @@ export default {
   //   console.log(cities);
   //   return { cities };
   // },
-  // async asyncData ({$$axios}) {
-  //   const cities = await $axios.$get('http://gladhouse_backend.local/api/cities');
+  // async asyncData ({ $axios }) {
+  //   const cities = await $axios.$get('http://gladhouse_backend.test/api/v1//cities');
   //   return { cities };
   // },
   async fetch () {
