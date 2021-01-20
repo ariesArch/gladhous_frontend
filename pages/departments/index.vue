@@ -64,16 +64,21 @@ export default {
 
   //     return { departments };
   //   },
-  async asyncData ({ $axios }) {
-    const departments = await $axios.$get('http://gladhouse_backend.local/api/departments');
-    return { departments };
+  //   async asyncData ({ $axios }) {
+  //     const departments = await $axios.$get('http://gladhouse_backend.local/api/departments');
+  //     return { departments };
+  //   },
+  async fetch () {
+    const departments = await this.$api.getDepartmentsList(this).then(response => response.data);
+    this.departments = departments;
   },
   data: () => {
     return {
+      departments: [],
       search: '',
       headers: [
-        { text: 'Name', value: 'name_mm' },
-        { text: 'Name_En', value: 'name_en' },
+        { text: 'Name', value: 'name' },
+        { text: 'Name_mm', value: 'name_mm' },
         { text: 'Description', value: 'description' },
         { text: 'Actions', value: 'actions', sortable: false }
       ]
