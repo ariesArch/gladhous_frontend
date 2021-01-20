@@ -11,11 +11,7 @@
               rules="required"
             >
               <v-text-field
-<<<<<<< HEAD
-                v-model="cities.name"
-=======
                 v-model="city.name"
->>>>>>> e18773f70491805036ace1e32ed58d513bd206a3
                 :error-messages="errors"
                 label="Name"
                 required
@@ -93,11 +89,7 @@ export default {
   data () {
     return {
       isOpenDialog: false,
-<<<<<<< HEAD
-      cities: {
-=======
       city: {
->>>>>>> e18773f70491805036ace1e32ed58d513bd206a3
         name: '',
         name_mm: '',
         description: '',

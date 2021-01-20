@@ -79,10 +79,7 @@ export default {
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Name_mm', value: 'name_mm' },
-<<<<<<< HEAD
-=======
         { text: 'Description', value: 'description' },
->>>>>>> e18773f70491805036ace1e32ed58d513bd206a3
         { text: 'Actions', value: 'actions', sortable: false }
       ]
     };
