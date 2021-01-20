@@ -7,11 +7,11 @@
           <v-card-text>
             <validation-provider
               v-slot="{ errors }"
-              name="name_mm"
+              name="name"
               rules="required"
             >
               <v-text-field
-                v-model="city.name_mm"
+                v-model="cities.name"
                 :error-messages="errors"
                 label="Name"
                 required
@@ -19,11 +19,11 @@
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
-              name="name_en"
+              name="name_mm"
               rules="required"
             >
               <v-text-field
-                v-model="city.name_en"
+                v-model="cities.name_mm"
                 :error-messages="errors"
                 label="Name in English"
                 required
@@ -35,7 +35,7 @@
               rules="required"
             >
               <v-radio-group
-                v-model="city.is_available_d2d"
+                v-model="cities.is_available_d2d"
                 :error-messages="errors"
                 required
               >
@@ -74,9 +74,9 @@ export default {
   data () {
     return {
       isOpenDialog: false,
-      city: {
+      cities: {
+        name: '',
         name_mm: '',
-        name_en: '',
         description: '',
         is_available_d2d: false
       }
@@ -87,15 +87,15 @@ export default {
       this.isOpenDialog = true;
     });
     this.$parent.$on('editForm', (item) => {
-      this.city = item;
+      this.cities = item;
       this.isOpenDialog = true;
     });
   },
   methods: {
     async saveCity () {
-      const { data } = await this.$api.createNewCity(this, this.city);
+      const { data } = await this.$api.createNewCity(this, this.cities);
       console.log(data);
-      this.isOpenDialog = false;
+      this.isOpenDialog = true;
     }
   }
 };
