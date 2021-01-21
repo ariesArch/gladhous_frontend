@@ -78,8 +78,7 @@ export default {
       search: '',
       headers: [
         { text: 'Name', value: 'name' },
-        { text: 'Name_mm', value: 'name_mm' },
-        { text: 'Description', value: 'description' },
+        { text: 'Name_En', value: 'name_mm' },
         { text: 'Actions', value: 'actions', sortable: false }
       ]
     };

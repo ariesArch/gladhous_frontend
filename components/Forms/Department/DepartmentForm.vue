@@ -7,11 +7,11 @@
           <v-card-text>
             <validation-provider
               v-slot="{ errors }"
-              name="name_mm"
+              name="name"
               rules="required"
             >
               <v-text-field
-                v-model="department.name_mm"
+                v-model="department.name"
                 :error-messages="errors"
                 label="Name"
                 required
@@ -19,13 +19,13 @@
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
-              name="name_en"
+              name="name_mm"
               rules="required"
             >
               <v-text-field
-                v-model="department.name_en"
+                v-model="department.name_mm"
                 :error-messages="errors"
-                label="Name in English"
+                label="Name in Myanmar"
                 required
               />
             </validation-provider>
@@ -48,7 +48,7 @@
           <v-card-actions>
             <v-spacer />
             <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
-            <v-btn color="info" :disabled="invalid" @click="SaveForm()">Save</v-btn>
+            <v-btn color="info" :disabled="invalid" @click="saveDepartment ()">Save</v-btn>
           </v-card-actions>
         </v-form>
       </validation-observer>
@@ -62,8 +62,8 @@ export default {
       isOpenDialog: false,
       dialogTitle: 'Create New Department',
       department: {
+        name: '',
         name_mm: '',
-        name_en: '',
         description: ''
       }
     };
@@ -79,7 +79,9 @@ export default {
     });
   },
   methods: {
-    SaveForm () {
+    async saveDepartment () {
+      const { data } = await this.$api.createNewDepartment(this, this.department);
+      console.log(data);
       this.isOpenDialog = false;
     }
   }
