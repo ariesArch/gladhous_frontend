@@ -6,30 +6,22 @@
       <validation-observer ref="observer" v-slot="{ invalid }">
         <v-form @submit.prevent="SaveForm">
           <v-card-text>
-            <!-- <validation-provider
-              v-slot="{ errors }"
-              name="id"
-              rules="required"
-            >
-              <v-text-field
-                v-model="item_sub_categories.id"
-                :error-messages="errors"
-                label="ID"
-                required
-              />
-            </validation-provider> -->
-            <!-- <validation-provider
+            <validation-provider
               v-slot="{ errors }"
               name="item_category_id"
               rules="required"
             >
-              <v-text-field
-                v-model="item_sub_categories.item_category_id"
+              <v-autocomplete
+                v-model="item_sub_categories.item_categroy_id"
+                :items="itemcategories"
+                item-text="name"
+                item-value="id"
+                label="Choose ItemCategory"
+                name="item_category_id"
                 :error-messages="errors"
-                label="Item_Category_ID"
                 required
               />
-            </validation-provider> -->
+            </validation-provider>
             <validation-provider
               v-slot="{ errors }"
               name="name"
@@ -38,7 +30,7 @@
               <v-text-field
                 v-model="item_sub_categories.name"
                 :error-messages="errors"
-                label="Name"
+                label="Name in English"
                 required
               />
             </validation-provider>
@@ -50,7 +42,7 @@
               <v-text-field
                 v-model="item_sub_categories.name_mm"
                 :error-messages="errors"
-                label="Name in English"
+                label="Name in Myanmar"
                 required
               />
             </validation-provider>
@@ -82,6 +74,10 @@
 </template>
 <script>
 export default {
+  async fetch () {
+    const itemcategories = await this.$api.getItemCategoriesList(this).then(response => response.data);
+    this.itemcategories = itemcategories;
+  },
   data () {
     return {
       isOpenDialog: false,
@@ -91,7 +87,8 @@ export default {
         name: '',
         name_mm: '',
         description: ''
-      }
+      },
+      item_categories: []
     };
   },
   mounted () {
