@@ -5,7 +5,7 @@
       <validation-observer ref="observer" v-slot="{ invalid }">
         <v-form @submit.prevent="SaveForm">
           <v-card-text>
-            <!-- <validation-provider
+            <validation-provider
               v-slot="{ errors }"
               name="name"
               rules="required"
@@ -72,7 +72,7 @@
                   </template>
                 </v-radio>
               </v-radio-group>
-            </validation-provider> -->
+            </validation-provider>
             <v-card-actions>
               <v-spacer />
               <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
@@ -99,7 +99,7 @@ export default {
     };
   },
   mounted () {
-    this.$parent.$on('CreateForm', () => {
+    this.$parent.$on('createForm', () => {
       this.isOpenDialog = true;
     });
     this.$parent.$on('editForm', (item) => {
@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     async saveCity () {
-      const { data } = await this.$api.createNewCity(this, this.cities);
+      const { data } = await this.$api.createNewCity(this, this.city);
       console.log(data);
       this.isOpenDialog = true;
     }

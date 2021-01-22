@@ -22,7 +22,6 @@
                 required
               />
             </validation-provider>
-            </validation-provider>
             <validation-provider
               v-slot="{ errors }"
               name="name"
