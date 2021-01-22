@@ -79,8 +79,8 @@ export default {
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Name_En', value: 'name_mm' },
-        { text: 'ItemCategory', value: 'item_category.name' },
-        { text: 'ItemSubCategory', value: 'item_sub_category.name' },
+        { text: 'ItemCategoryName', value: 'item_category.name' },
+        { text: 'ItemSubCategoryName', value: 'item_sub_category.name' },
         { text: 'Normal_Qu', value: 'normal_quantity' },
         { text: 'Special_Qu', value: 'special_quantity' },
         { text: 'Normal_Price', value: 'normal_price' },

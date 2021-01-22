@@ -50,7 +50,7 @@
               rules="required"
             >
               <v-radio-group
-                v-model="cities.is_available_d2d"
+                v-model="city.is_available_d2d"
                 :error-messages="errors"
                 required
               >
