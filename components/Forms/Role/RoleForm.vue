@@ -6,18 +6,6 @@
       <validation-observer ref="observer" v-slot="{ invalid }">
         <v-form @submit.prevent="SaveForm">
           <v-card-text>
-            <!-- <validation-provider
-              v-slot="{ errors }"
-              name="name"
-              rules="required"
-            >
-              <v-text-field
-                v-model="roles.name"
-                :error-messages="errors"
-                label="Name"
-                required
-              />
-            </validation-provider> -->
             <validation-provider
               v-slot="{ errors }"
               name="name"

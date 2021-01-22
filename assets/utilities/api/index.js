@@ -6,6 +6,7 @@ import Item from './Item';
 import Branch from './Branch';
 import ItemCategory from './ItemCategory';
 import ItemSubCategory from './ItemSubCategory';
+import Role from './Role';
 export default {
   ...City,
   ...Zone,
@@ -14,5 +15,6 @@ export default {
   ...Item,
   ...Branch,
   ...ItemCategory,
+  ...Role,
   ...ItemSubCategory
 };

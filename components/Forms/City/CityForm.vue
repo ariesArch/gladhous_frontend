@@ -5,7 +5,7 @@
       <validation-observer ref="observer" v-slot="{ invalid }">
         <v-form @submit.prevent="SaveForm">
           <v-card-text>
-            <validation-provider
+            <!-- <validation-provider
               v-slot="{ errors }"
               name="name"
               rules="required"
@@ -72,15 +72,11 @@
                   </template>
                 </v-radio>
               </v-radio-group>
-            </validation-provider>
+            </validation-provider> -->
             <v-card-actions>
               <v-spacer />
-              <v-btn color="warning" @click="isOpenDialog = false"
-                >Cancel</v-btn
-              >
-              <v-btn color="info" :disabled="invalid" @click="saveCity()"
-                >Save</v-btn
-              >
+              <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
+              <v-btn color="info" :disabled="invalid" @click="saveCity()">Save</v-btn>
             </v-card-actions>
           </v-card-text>
         </v-form>
@@ -90,28 +86,29 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       isOpenDialog: false,
+      dialogTitle: 'Create New City',
       city: {
-        name: "",
-        name_mm: "",
-        description: "",
+        name: '',
+        name_mm: '',
+        description: '',
         is_available_d2d: false
       }
     };
   },
-  mounted() {
-    this.$parent.$on("createForm", () => {
+  mounted () {
+    this.$parent.$on('CreateForm', () => {
       this.isOpenDialog = true;
     });
-    this.$parent.$on("editForm", item => {
+    this.$parent.$on('editForm', (item) => {
       this.cities = item;
       this.isOpenDialog = true;
     });
   },
   methods: {
-    async saveCity() {
+    async saveCity () {
       const { data } = await this.$api.createNewCity(this, this.cities);
       console.log(data);
       this.isOpenDialog = true;
