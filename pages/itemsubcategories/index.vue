@@ -75,7 +75,7 @@ export default {
       search: '',
       headers: [
         { text: 'ID', value: 'id' },
-        { text: 'Item_Category_Name', value: 'item_category.name_mm' },
+        { text: 'Item_Category_Name', value: 'item_category_id.name_mm' },
         { text: 'Name', value: 'name' },
         { text: 'Name_mm', value: 'name_mm' },
         { text: 'Description', value: 'description' },
