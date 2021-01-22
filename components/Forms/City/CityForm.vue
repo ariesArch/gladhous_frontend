@@ -108,7 +108,7 @@ export default {
   },
   methods: {
     async saveCity () {
-      const { data } = await this.$api.createNewCity(this, this.cities);
+      const { data } = await this.$api.createNewCity(this, this.city);
       console.log(data);
       this.isOpenDialog = true;
     }
