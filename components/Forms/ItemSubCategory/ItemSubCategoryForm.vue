@@ -12,15 +12,16 @@
               rules="required"
             >
               <v-autocomplete
-                v-model="item_sub_categories.item_categroy_id"
+                v-model="item_sub_categories.item_category_id"
                 :items="itemcategories"
                 item-text="name"
                 item-value="id"
-                label="Choose ItemCategory"
+                label="Choose ItemCategoryName"
                 name="item_category_id"
                 :error-messages="errors"
                 required
               />
+            </validation-provider>
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
@@ -88,7 +89,7 @@ export default {
         name_mm: '',
         description: ''
       },
-      item_categories: []
+      itemcategories: []
     };
   },
   mounted () {
