@@ -75,8 +75,12 @@
             </validation-provider>
             <v-card-actions>
               <v-spacer />
-              <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
-              <v-btn color="info" :disabled="invalid" @click="saveCity()">Save</v-btn>
+              <v-btn color="warning" @click="isOpenDialog = false"
+                >Cancel</v-btn
+              >
+              <v-btn color="info" :disabled="invalid" @click="saveCity()"
+                >Save</v-btn
+              >
             </v-card-actions>
           </v-card-text>
         </v-form>
@@ -86,28 +90,28 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       isOpenDialog: false,
       city: {
-        name: '',
-        name_mm: '',
-        description: '',
+        name: "",
+        name_mm: "",
+        description: "",
         is_available_d2d: false
       }
     };
   },
-  mounted () {
-    this.$parent.$on('createForm', () => {
+  mounted() {
+    this.$parent.$on("createForm", () => {
       this.isOpenDialog = true;
     });
-    this.$parent.$on('editForm', (item) => {
+    this.$parent.$on("editForm", item => {
       this.cities = item;
       this.isOpenDialog = true;
     });
   },
   methods: {
-    async saveCity () {
+    async saveCity() {
       const { data } = await this.$api.createNewCity(this, this.cities);
       console.log(data);
       this.isOpenDialog = true;
