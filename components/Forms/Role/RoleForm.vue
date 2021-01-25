@@ -8,11 +8,11 @@
           <v-card-text>
             <validation-provider
               v-slot="{ errors }"
-              name="name_mm"
+              name="name"
               rules="required"
             >
               <v-text-field
-                v-model="role.name_mm"
+                v-model="roles.name"
                 :error-messages="errors"
                 label="Name"
                 required
@@ -20,11 +20,11 @@
             </validation-provider>
             <validation-provider
               v-slot="{ errors }"
-              name="name_en"
+              name="name_mm"
               rules="required"
             >
               <v-text-field
-                v-model="role.name_en"
+                v-model="roles.name_mm"
                 :error-messages="errors"
                 label="Name in English"
                 required
@@ -36,7 +36,7 @@
               rules="required"
             >
               <v-textarea
-                v-model="role.description"
+                v-model="roles.description"
                 :error-messages="errors"
                 label="Description"
                 required
@@ -49,7 +49,7 @@
           <v-card-actions>
             <v-spacer />
             <v-btn color="warning" @click="isOpenDialog=false">Cancel</v-btn>
-            <v-btn color="info" :disabled="invalid" @click="SaveForm()">Save</v-btn>
+            <v-btn color="info" :disabled="invalid" @click="SaveRole ()">Save</v-btn>
           </v-card-actions>
         </v-form>
       </validation-observer>
@@ -62,9 +62,9 @@ export default {
         return {
             isOpenDialog: false,
             dialogTitle: 'Create New Form',
-            role: {
+            roles: {
+                name: '',
                 name_mm: '',
-                name_en: '',
                 description: ''
             }
         };
@@ -74,13 +74,15 @@ export default {
             this.isOpenDialog = true;
         });
         this.$parent.$on('editForm', (item) => {
-            this.role = item;
+            this.roles = item;
             this.dialogTitle = `Edit Role (${item.name_mm})`;
-            this.isOpenDialog = true;
+            this.isOpenDialog = false;
         });
     },
     methods: {
-        SaveForm () {
+        async SaveRole () {
+            const { data } = await this.$api.createNewRole(this, this.roles);
+            console.log(data);
             this.isOpenDialog = false;
         }
     }

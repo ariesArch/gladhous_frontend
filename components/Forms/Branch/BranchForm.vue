@@ -32,7 +32,20 @@
                 item-text="name_mm"
                 item-value="id"
                 label="Choose Zone"
-                name="city_id"
+                name="zone_id"
+                :error-messages="errors"
+                required
+              />
+            </validation-provider>
+            <validation-provider
+              v-slot="{ errors }"
+              name="name"
+              rules="required"
+            >
+              <v-text-field
+                v-model="branch.name"
+                label="Name"
+                name="name"
                 :error-messages="errors"
                 required
               />
@@ -44,21 +57,8 @@
             >
               <v-text-field
                 v-model="branch.name_mm"
-                label="Name"
-                name="name_mm"
-                :error-messages="errors"
-                required
-              />
-            </validation-provider>
-            <validation-provider
-              v-slot="{ errors }"
-              name="name_en"
-              rules="required"
-            >
-              <v-text-field
-                v-model="branch.name_en"
                 label="Name in English"
-                name="name_en"
+                name="name_mm"
                 :error-messages="errors"
                 required
               />
@@ -70,20 +70,18 @@
             >
               <v-textarea
                 v-model="branch.description"
-                v-validate="'required'"
                 :error-messages="errors"
                 label="Description"
-                name="description"
+                required
                 auto-grow
                 outlined
-                rows="3"
                 shaped
               />
             </validation-provider>
             <v-card-actions>
               <v-spacer />
               <v-btn color="warning" @click="isOpenDialog = false">Cancel</v-btn>
-              <v-btn color="info" :disabled="invalid" @click="SaveForm()">Save</v-btn>
+              <v-btn color="info" :disabled="invalid" @click="saveBranch ()">Save</v-btn>
             </v-card-actions>
           </v-card-text>
         </v-form>
@@ -93,6 +91,12 @@
 </template>
 <script>
 export default {
+    async fetch () {
+        const zones = await this.$api.getZonesList(this).then(response => response.data);
+        this.zones = zones;
+        const cities = await this.$api.getCitiesList(this).then(response => response.data);
+        this.cities = cities;
+    },
     data () {
         return {
             isOpenDialog: false,
@@ -100,8 +104,8 @@ export default {
             branch: {
                 city_id: '',
                 zone_id: '',
+                name: '',
                 name_mm: '',
-                name_en: '',
                 description: ''
             },
             cities: [],
@@ -121,7 +125,9 @@ export default {
         });
     },
     methods: {
-        SaveForm () {
+        async saveBranch () {
+            const { data } = await this.$api.createNewBranch(this, this.branch);
+            console.log(data);
             this.isOpenDialog = false;
         }
     }
