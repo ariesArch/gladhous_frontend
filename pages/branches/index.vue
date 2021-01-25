@@ -30,41 +30,41 @@
 <script>
 import BranchForm from '@/components/Forms/Branch/BranchForm.vue';
 export default {
-  components: {
-    BranchForm
-  },
-  async asyncData ({ $content }) {
-    const cities = await $content('cities')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const zones = await $content('zones')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const branches = await $content('branches')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    return { branches, cities, zones };
-  },
-  data: () => {
-    return {
-      search: '',
-      headers: [
-        { text: 'City', value: 'city.city_name' },
-        { text: 'Zone', value: 'zone.zone_name' },
-        { text: 'Name', value: 'name_mm' },
-        { text: 'Name in English', value: 'name_en' },
-        { text: 'Description', value: 'description' },
-        { text: 'Actions', value: 'actions' }
-      ]
-    };
-  },
-  methods: {
-    onCreate () {
-      this.$emit('createForm');
+    components: {
+        BranchForm
     },
-    onEdit (item) {
-      this.$emit('editForm', item);
+    async asyncData ({ $content }) {
+        const cities = await $content('cities')
+            .sortBy('name_mm', 'asc')
+            .fetch();
+        const zones = await $content('zones')
+            .sortBy('name_mm', 'asc')
+            .fetch();
+        const branches = await $content('branches')
+            .sortBy('name_mm', 'asc')
+            .fetch();
+        return { branches, cities, zones };
+    },
+    data: () => {
+        return {
+            search: '',
+            headers: [
+                { text: 'City', value: 'city.city_name' },
+                { text: 'Zone', value: 'zone.zone_name' },
+                { text: 'Name', value: 'name_mm' },
+                { text: 'Name in English', value: 'name_en' },
+                { text: 'Description', value: 'description' },
+                { text: 'Actions', value: 'actions' }
+            ]
+        };
+    },
+    methods: {
+        onCreate () {
+            this.$emit('createForm');
+        },
+        onEdit (item) {
+            this.$emit('editForm', item);
+        }
     }
-  }
 };
 </script>

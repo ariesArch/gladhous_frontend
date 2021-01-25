@@ -60,34 +60,34 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      dialogTitle: 'Create New Zone',
-      zone: {
-        name_mm: '',
-        name_en: '',
-        city_id: '',
-        description: ''
-      },
-      cities: []
-    };
-  },
-  mounted () {
-    this.cities = this.$parent.cities;
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-    this.$parent.$on('editForm', (item) => {
-      this.zone = item;
-      this.dialogTitle = `Edit Zone (${item.name_mm})`;
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    SaveForm () {
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            dialogTitle: 'Create New Zone',
+            zone: {
+                name_mm: '',
+                name_en: '',
+                city_id: '',
+                description: ''
+            },
+            cities: []
+        };
+    },
+    mounted () {
+        this.cities = this.$parent.cities;
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+        this.$parent.$on('editForm', (item) => {
+            this.zone = item;
+            this.dialogTitle = `Edit Zone (${item.name_mm})`;
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        SaveForm () {
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

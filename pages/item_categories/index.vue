@@ -9,13 +9,13 @@
 <script>
 import ItemCategoryForm from '@/components/Forms/ItemCategory/ItemCategoryForm.vue';
 export default {
-  components: {
-    ItemCategoryForm
-  },
-  methods: {
-    onCreate () {
-      this.$emit('createForm');
+    components: {
+        ItemCategoryForm
+    },
+    methods: {
+        onCreate () {
+            this.$emit('createForm');
+        }
     }
-  }
 };
 </script>

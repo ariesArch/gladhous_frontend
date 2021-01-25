@@ -30,33 +30,33 @@
 <script>
 import StaffTypeForm from '@/components/Forms/StaffType/StaffTypeForm.vue';
 export default {
-  components: {
-    StaffTypeForm
-  },
-  async asyncData ({ $content }) {
-    const stafftypes = await $content('staff_types')
-      .sortBy('type_mm', 'asc')
-      .fetch();
-    return { stafftypes };
-  },
-  data: () => {
-    return {
-      search: '',
-      headers: [
-        { text: 'Name', value: 'type_mm' },
-        { text: 'Name in English', value: 'type_en' },
-        { text: 'Description', value: 'description' },
-        { text: 'Actions', value: 'actions' }
-      ]
-    };
-  },
-  methods: {
-    onCreate () {
-      this.$emit('createForm');
+    components: {
+        StaffTypeForm
     },
-    onEdit (item) {
-      this.$emit('editForm', item);
+    async asyncData ({ $content }) {
+        const stafftypes = await $content('staff_types')
+            .sortBy('type_mm', 'asc')
+            .fetch();
+        return { stafftypes };
+    },
+    data: () => {
+        return {
+            search: '',
+            headers: [
+                { text: 'Name', value: 'type_mm' },
+                { text: 'Name in English', value: 'type_en' },
+                { text: 'Description', value: 'description' },
+                { text: 'Actions', value: 'actions' }
+            ]
+        };
+    },
+    methods: {
+        onCreate () {
+            this.$emit('createForm');
+        },
+        onEdit (item) {
+            this.$emit('editForm', item);
+        }
     }
-  }
 };
 </script>

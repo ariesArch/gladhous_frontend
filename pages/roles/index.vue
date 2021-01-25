@@ -54,34 +54,34 @@
 <script>
 import RoleForm from '@/components/Forms/Role/RoleForm.vue';
 export default {
-  components: {
-    RoleForm
-  },
-  async asyncData ({ $content, params }) {
-    const roles = await $content('roles', params.slug)
-      .sortBy('createdAt', 'desc')
-      .fetch();
-
-    return { roles };
-  },
-  data: () => {
-    return {
-      search: '',
-      headers: [
-        { text: 'Name', value: 'name_mm' },
-        { text: 'Name_En', value: 'name_en' },
-        { text: 'Description', value: 'description' },
-        { text: 'Actions', value: 'actions', sortable: false }
-      ]
-    };
-  },
-  methods: {
-    onCreate () {
-      this.$emit('createForm');
+    components: {
+        RoleForm
     },
-    onEdit (item) {
-      this.$emit('editForm', item);
+    async asyncData ({ $content, params }) {
+        const roles = await $content('roles', params.slug)
+            .sortBy('createdAt', 'desc')
+            .fetch();
+
+        return { roles };
+    },
+    data: () => {
+        return {
+            search: '',
+            headers: [
+                { text: 'Name', value: 'name_mm' },
+                { text: 'Name_En', value: 'name_en' },
+                { text: 'Description', value: 'description' },
+                { text: 'Actions', value: 'actions', sortable: false }
+            ]
+        };
+    },
+    methods: {
+        onCreate () {
+            this.$emit('createForm');
+        },
+        onEdit (item) {
+            this.$emit('editForm', item);
+        }
     }
-  }
 };
 </script>

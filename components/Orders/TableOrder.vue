@@ -108,51 +108,51 @@
 </template>
 <script>
 export default {
-  name: 'TableOrder',
-  props: {
-    menus: {
-      type: Array,
-      required: true
+    name: 'TableOrder',
+    props: {
+        menus: {
+            type: Array,
+            required: true
+        }
+    },
+    data () {
+        return {
+            isopenDialog: false,
+            selectedTable: null,
+            searchMenu: null,
+            items: []
+        };
+    },
+    computed: {
+        showMenus () {
+            return this.searchMenu ? this.menus.filter(res => res.name.toLowerCase().includes(this.searchMenu.toLowerCase())) : this.menus;
+        },
+        selectedItems () {
+            return this.items;
+        }
+    },
+    mounted () {
+        this.$parent.$on('newTableOrder', (item) => {
+            this.selectedTable = item;
+            this.isopenDialog = true;
+        });
+    },
+    methods: {
+        onNewTableOrder (item) {
+            this.items.push(item);
+        },
+        isSelected (value) {
+            return this.items.includes(value);
+        },
+        onSaveItem () {
+            this.$parent.$emit('SaveItem', this.selectedTable);
+            this.closeForm();
+        },
+        closeForm () {
+            this.items = [];
+            this.isopenDialog = false;
+        }
     }
-  },
-  data () {
-    return {
-      isopenDialog: false,
-      selectedTable: null,
-      searchMenu: null,
-      items: []
-    };
-  },
-  computed: {
-    showMenus () {
-      return this.searchMenu ? this.menus.filter(res => res.name.toLowerCase().includes(this.searchMenu.toLowerCase())) : this.menus;
-    },
-    selectedItems () {
-      return this.items;
-    }
-  },
-  mounted () {
-    this.$parent.$on('newTableOrder', (item) => {
-      this.selectedTable = item;
-      this.isopenDialog = true;
-    });
-  },
-  methods: {
-    onNewTableOrder (item) {
-      this.items.push(item);
-    },
-    isSelected (value) {
-      return this.items.includes(value);
-    },
-    onSaveItem () {
-      this.$parent.$emit('SaveItem', this.selectedTable);
-      this.closeForm();
-    },
-    closeForm () {
-      this.items = [];
-      this.isopenDialog = false;
-    }
-  }
 };
 </script>
 <style>

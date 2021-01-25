@@ -164,44 +164,44 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      dialogTitle: 'Create new Table',
-      table: {
-        name: '',
-        table_no: '',
-        max_capacity: '',
-        staff_id: '',
-        branch_id: '',
-        city_id: '',
-        zone_id: '',
-        description: ''
-      },
-      staffs: [],
-      branches: [],
-      cities: [],
-      zones: []
-    };
-  },
-  mounted () {
-    this.staffs = this.$parent.staffs;
-    this.branches = this.$parent.branches;
-    this.cities = this.$parent.cities;
-    this.zones = this.$parent.zones;
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-    this.$parent.$on('editForm', (item) => {
-      this.table = item;
-      this.dialogTitle = `Edit Table (${item.name})`;
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    SaveForm () {
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            dialogTitle: 'Create new Table',
+            table: {
+                name: '',
+                table_no: '',
+                max_capacity: '',
+                staff_id: '',
+                branch_id: '',
+                city_id: '',
+                zone_id: '',
+                description: ''
+            },
+            staffs: [],
+            branches: [],
+            cities: [],
+            zones: []
+        };
+    },
+    mounted () {
+        this.staffs = this.$parent.staffs;
+        this.branches = this.$parent.branches;
+        this.cities = this.$parent.cities;
+        this.zones = this.$parent.zones;
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+        this.$parent.$on('editForm', (item) => {
+            this.table = item;
+            this.dialogTitle = `Edit Table (${item.name})`;
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        SaveForm () {
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

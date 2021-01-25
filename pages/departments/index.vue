@@ -54,38 +54,38 @@
 <script>
 import DepartmentForm from '@/components/Forms/Department/DepartmentForm.vue';
 export default {
-  components: {
-    DepartmentForm
-  },
-  //   async asyncData ({ $content, params }) {
-  //     const departments = await $content('departments', params.slug)
-  //       .sortBy('createdAt', 'desc')
-  //       .fetch();
-
-  //     return { departments };
-  //   },
-  async asyncData ({ $axios }) {
-    const departments = await $axios.$get('http://gladhouse_backend.local/api/departments');
-    return { departments };
-  },
-  data: () => {
-    return {
-      search: '',
-      headers: [
-        { text: 'Name', value: 'name_mm' },
-        { text: 'Name_En', value: 'name_en' },
-        { text: 'Description', value: 'description' },
-        { text: 'Actions', value: 'actions', sortable: false }
-      ]
-    };
-  },
-  methods: {
-    onCreate () {
-      this.$emit('createForm');
+    components: {
+        DepartmentForm
     },
-    onEdit (item) {
-      this.$emit('editForm', item);
+    //   async asyncData ({ $content, params }) {
+    //     const departments = await $content('departments', params.slug)
+    //       .sortBy('createdAt', 'desc')
+    //       .fetch();
+
+    //     return { departments };
+    //   },
+    async asyncData ({ $axios }) {
+        const departments = await $axios.$get('http://gladhouse_backend.local/api/departments');
+        return { departments };
+    },
+    data: () => {
+        return {
+            search: '',
+            headers: [
+                { text: 'Name', value: 'name_mm' },
+                { text: 'Name_En', value: 'name_en' },
+                { text: 'Description', value: 'description' },
+                { text: 'Actions', value: 'actions', sortable: false }
+            ]
+        };
+    },
+    methods: {
+        onCreate () {
+            this.$emit('createForm');
+        },
+        onEdit (item) {
+            this.$emit('editForm', item);
+        }
     }
-  }
 };
 </script>

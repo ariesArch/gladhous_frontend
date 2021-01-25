@@ -10,10 +10,10 @@
 </template>
 <script>
 export default {
-  async asyncData ({ $content, params }) {
-    const city = await $content('cities', params.slug).fetch();
-    console.log(city);
-    return { city };
-  }
+    async asyncData ({ $content, params }) {
+        const city = await $content('cities', params.slug).fetch();
+        console.log(city);
+        return { city };
+    }
 };
 </script>

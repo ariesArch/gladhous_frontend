@@ -10,13 +10,13 @@
 <script>
 import ItemForm from '@/components/Forms/Item/ItemForm.vue';
 export default {
-  components: {
-    ItemForm
-  },
-  methods: {
-    onCreate () {
-      this.$emit('createForm');
+    components: {
+        ItemForm
+    },
+    methods: {
+        onCreate () {
+            this.$emit('createForm');
+        }
     }
-  }
 };
 </script>

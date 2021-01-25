@@ -58,31 +58,31 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      dialogTitle: 'Create New Form',
-      role: {
-        name_mm: '',
-        name_en: '',
-        description: ''
-      }
-    };
-  },
-  mounted () {
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-    this.$parent.$on('editForm', (item) => {
-      this.role = item;
-      this.dialogTitle = `Edit Role (${item.name_mm})`;
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    SaveForm () {
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            dialogTitle: 'Create New Form',
+            role: {
+                name_mm: '',
+                name_en: '',
+                description: ''
+            }
+        };
+    },
+    mounted () {
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+        this.$parent.$on('editForm', (item) => {
+            this.role = item;
+            this.dialogTitle = `Edit Role (${item.name_mm})`;
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        SaveForm () {
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

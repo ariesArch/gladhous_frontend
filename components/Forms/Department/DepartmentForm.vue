@@ -57,31 +57,31 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      dialogTitle: 'Create New Department',
-      department: {
-        name_mm: '',
-        name_en: '',
-        description: ''
-      }
-    };
-  },
-  mounted () {
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-    this.$parent.$on('editForm', (item) => {
-      this.department = item;
-      this.dialogTitle = `Edit Department (${item.name_mm})`;
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    SaveForm () {
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            dialogTitle: 'Create New Department',
+            department: {
+                name_mm: '',
+                name_en: '',
+                description: ''
+            }
+        };
+    },
+    mounted () {
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+        this.$parent.$on('editForm', (item) => {
+            this.department = item;
+            this.dialogTitle = `Edit Department (${item.name_mm})`;
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        SaveForm () {
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

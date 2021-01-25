@@ -93,37 +93,37 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      dialogTitle: 'Create new Branch',
-      branch: {
-        city_id: '',
-        zone_id: '',
-        name_mm: '',
-        name_en: '',
-        description: ''
-      },
-      cities: [],
-      zones: []
-    };
-  },
-  mounted () {
-    this.cities = this.$parent.cities;
-    this.zones = this.$parent.zones;
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-    this.$parent.$on('editForm', (item) => {
-      this.branch = item;
-      this.dialogTitle = `Edit Branch (${item.name_mm})`;
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    SaveForm () {
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            dialogTitle: 'Create new Branch',
+            branch: {
+                city_id: '',
+                zone_id: '',
+                name_mm: '',
+                name_en: '',
+                description: ''
+            },
+            cities: [],
+            zones: []
+        };
+    },
+    mounted () {
+        this.cities = this.$parent.cities;
+        this.zones = this.$parent.zones;
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+        this.$parent.$on('editForm', (item) => {
+            this.branch = item;
+            this.dialogTitle = `Edit Branch (${item.name_mm})`;
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        SaveForm () {
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

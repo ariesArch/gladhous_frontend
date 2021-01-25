@@ -71,32 +71,32 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      city: {
-        name_mm: '',
-        name_en: '',
-        description: '',
-        is_available_d2d: false
-      }
-    };
-  },
-  mounted () {
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-    this.$parent.$on('editForm', (item) => {
-      this.city = item;
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    async saveCity () {
-      const { data } = await this.$api.createNewCity(this, this.city);
-      console.log(data);
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            city: {
+                name_mm: '',
+                name_en: '',
+                description: '',
+                is_available_d2d: false
+            }
+        };
+    },
+    mounted () {
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+        this.$parent.$on('editForm', (item) => {
+            this.city = item;
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        async saveCity () {
+            const { data } = await this.$api.createNewCity(this, this.city);
+            console.log(data);
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

@@ -61,32 +61,32 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      dialogTitle: 'Create New StaffType',
-      staff_type: {
-        name_mm: '',
-        name_en: '',
-        description: ''
-      }
-    };
-  },
-  mounted () {
-    this.staff_types = this.$parent.$parent.staff_types;
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-    this.$parent.$on('editForm', (item) => {
-      this.staff_type = item;
-      this.dialogTitle = `Edit StaffType (${item.name_mm})`;
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    SaveForm () {
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            dialogTitle: 'Create New StaffType',
+            staff_type: {
+                name_mm: '',
+                name_en: '',
+                description: ''
+            }
+        };
+    },
+    mounted () {
+        this.staff_types = this.$parent.$parent.staff_types;
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+        this.$parent.$on('editForm', (item) => {
+            this.staff_type = item;
+            this.dialogTitle = `Edit StaffType (${item.name_mm})`;
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        SaveForm () {
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

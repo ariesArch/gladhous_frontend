@@ -253,111 +253,111 @@
 
 <script>
 const gradients = [
-  ['#6c757d'],
-  ['#6c757d'],
-  ['#6c757d', '#6c757d', '#6c757d'],
-  ['#21c1d6', '21c1d6'],
-  ['#21c1d6', '#21c1d6', '#21c1d6'],
-  ['#21c1d6', '#21c1d6', '#21c1d6']
+    ['#6c757d'],
+    ['#6c757d'],
+    ['#6c757d', '#6c757d', '#6c757d'],
+    ['#21c1d6', '21c1d6'],
+    ['#21c1d6', '#21c1d6', '#21c1d6'],
+    ['#21c1d6', '#21c1d6', '#21c1d6']
 ];
 
 const gradients2 = [
-  ['#1e88e5'],
-  ['#1e88e5'],
-  ['#1e88e5', '#1e88e5', '#1e88e5'],
-  ['#1e88e5', '#1e88e5'],
-  ['#1e88e5', '#1e88e5', '#1e88e5'],
-  ['#1e88e5', '#1e88e5', '#1e88e5']
+    ['#1e88e5'],
+    ['#1e88e5'],
+    ['#1e88e5', '#1e88e5', '#1e88e5'],
+    ['#1e88e5', '#1e88e5'],
+    ['#1e88e5', '#1e88e5', '#1e88e5'],
+    ['#1e88e5', '#1e88e5', '#1e88e5']
 ];
 
 export default {
-  layout: 'operation',
-  name: 'BasicDashboard',
-  data: () => ({
-    fill: true,
-    gradient: gradients[4],
-    gradients,
-    padding: 8,
-    radius: 50,
-    value: [0, 2, 5, 9, 5, 10, 3, 5, 1, 8, 2, 9, 0],
-    width: 1,
+    layout: 'operation',
+    name: 'BasicDashboard',
+    data: () => ({
+        fill: true,
+        gradient: gradients[4],
+        gradients,
+        padding: 8,
+        radius: 50,
+        value: [0, 2, 5, 9, 5, 10, 3, 5, 1, 8, 2, 9, 0],
+        width: 1,
 
-    fill2: true,
-    gradient2: gradients2[4],
-    gradients2,
-    radius2: 0,
-    padding2: 0,
-    value2: [1, 2, 5, 9, 5, 10, 3, 5, 1, 8, 2, 9, 4],
-    width2: 4,
-    tasks: [
-      {
-        done: false,
-        text: 'Check emails of Mr.Shah'
-      },
-      {
-        done: false,
-        text: 'Give salary to employee'
-      }
-    ],
-    task: null,
-    selected: [2],
-    items: [
-      {
-        action: '15 min',
-        headline: 'Brunch this weekend?',
-        title: 'Ali Connors',
-        subtitle:
+        fill2: true,
+        gradient2: gradients2[4],
+        gradients2,
+        radius2: 0,
+        padding2: 0,
+        value2: [1, 2, 5, 9, 5, 10, 3, 5, 1, 8, 2, 9, 4],
+        width2: 4,
+        tasks: [
+            {
+                done: false,
+                text: 'Check emails of Mr.Shah'
+            },
+            {
+                done: false,
+                text: 'Give salary to employee'
+            }
+        ],
+        task: null,
+        selected: [2],
+        items: [
+            {
+                action: '15 min',
+                headline: 'Brunch this weekend?',
+                title: 'Ali Connors',
+                subtitle:
           "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-      },
-      {
-        action: '2 hr',
-        headline: 'Summer BBQ',
-        title: 'me, Scrott, Jennifer',
-        subtitle: "Wish I could come, but I'm out of town this weekend."
-      },
-      {
-        action: '6 hr',
-        headline: 'Oui oui',
-        title: 'Sandra Adams',
-        subtitle: 'Do you have Paris recommendations? Have you ever been?'
-      },
-      {
-        action: '12 hr',
-        headline: 'Birthday gift',
-        title: 'Trevor Hansen',
-        subtitle:
+            },
+            {
+                action: '2 hr',
+                headline: 'Summer BBQ',
+                title: 'me, Scrott, Jennifer',
+                subtitle: "Wish I could come, but I'm out of town this weekend."
+            },
+            {
+                action: '6 hr',
+                headline: 'Oui oui',
+                title: 'Sandra Adams',
+                subtitle: 'Do you have Paris recommendations? Have you ever been?'
+            },
+            {
+                action: '12 hr',
+                headline: 'Birthday gift',
+                title: 'Trevor Hansen',
+                subtitle:
           'Have any ideas about what we should get Heidi for her birthday?'
-      },
-      {
-        action: '18hr',
-        headline: 'Recipe to try',
-        title: 'Britta Holt',
-        subtitle:
+            },
+            {
+                action: '18hr',
+                headline: 'Recipe to try',
+                title: 'Britta Holt',
+                subtitle:
           'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.'
-      }
-    ]
-  }),
-  computed: {
-    completedTasks () {
-      return this.tasks.filter(task => task.done).length;
+            }
+        ]
+    }),
+    computed: {
+        completedTasks () {
+            return this.tasks.filter(task => task.done).length;
+        },
+        progress () {
+            return (this.completedTasks / this.tasks.length) * 100;
+        },
+        remainingTasks () {
+            return this.tasks.length - this.completedTasks;
+        }
     },
-    progress () {
-      return (this.completedTasks / this.tasks.length) * 100;
-    },
-    remainingTasks () {
-      return this.tasks.length - this.completedTasks;
-    }
-  },
 
-  methods: {
-    create () {
-      this.tasks.push({
-        done: false,
-        text: this.task
-      });
+    methods: {
+        create () {
+            this.tasks.push({
+                done: false,
+                text: this.task
+            });
 
-      this.task = null;
+            this.task = null;
+        }
     }
-  }
 };
 </script>

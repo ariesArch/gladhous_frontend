@@ -18,26 +18,26 @@ import Header from '@/components/BaseUI/Header';
 
 import { mapState, mapMutations } from 'vuex';
 export default {
-  name: 'Layout',
+    name: 'Layout',
 
-  components: {
-    Header
+    components: {
+        Header
     // Sidebar,
     // Footer
-  },
+    },
 
-  data: () => ({
-    expandOnHover: false
-  }),
-  computed: {
-    ...mapState(['Customizer_drawer'])
-  },
+    data: () => ({
+        expandOnHover: false
+    }),
+    computed: {
+        ...mapState(['Customizer_drawer'])
+    },
 
-  methods: {
-    ...mapMutations({
-      setCustomizerDrawer: 'SET_CUSTOMIZER_DRAWER'
-    })
-  }
+    methods: {
+        ...mapMutations({
+            setCustomizerDrawer: 'SET_CUSTOMIZER_DRAWER'
+        })
+    }
 };
 </script>
 <style>

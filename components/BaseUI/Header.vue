@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app clipped-left clipped-right color="primary" dark>
+  <v-app-bar app clipped-left clipped-right light>
     <v-toolbar-title class="align-center d-flex">
       <span class="logo-icon">
         <img src="@/assets/logo-light-icon.png">
@@ -33,37 +33,37 @@
 // Utilities
 import { mapState, mapMutations } from 'vuex';
 export default {
-  name: 'Header',
+    name: 'Header',
 
-  components: {},
+    components: {},
 
-  props: {
-    value: {
-      type: Boolean,
-      default: false
+    props: {
+        value: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: () => ({
+        userprofile: [
+            { title: 'My Profile' },
+            { title: 'My Balance' },
+            { title: 'Inbox' },
+            { title: 'Account Setting' },
+            { title: 'Logout' }
+        ],
+        href () {
+            return undefined;
+        }
+    }),
+
+    computed: {
+        ...mapState(['Sidebar_drawer'])
+    },
+
+    methods: {
+        ...mapMutations({
+            setSidebarDrawer: 'SET_SIDEBAR_DRAWER'
+        })
     }
-  },
-  data: () => ({
-    userprofile: [
-      { title: 'My Profile' },
-      { title: 'My Balance' },
-      { title: 'Inbox' },
-      { title: 'Account Setting' },
-      { title: 'Logout' }
-    ],
-    href () {
-      return undefined;
-    }
-  }),
-
-  computed: {
-    ...mapState(['Sidebar_drawer'])
-  },
-
-  methods: {
-    ...mapMutations({
-      setSidebarDrawer: 'SET_SIDEBAR_DRAWER'
-    })
-  }
 };
 </script>

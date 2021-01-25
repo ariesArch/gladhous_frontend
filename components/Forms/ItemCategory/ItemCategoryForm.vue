@@ -29,23 +29,23 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      table_name: '',
-      table_no: '',
-      capacity: ''
-    };
-  },
-  mounted () {
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    SaveForm () {
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            table_name: '',
+            table_no: '',
+            capacity: ''
+        };
+    },
+    mounted () {
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        SaveForm () {
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

@@ -45,44 +45,44 @@
 <script>
 import ZoneForm from '@/components/Forms/Zone/ZoneForm.vue';
 export default {
-  components: {
-    ZoneForm
-  },
-  // async asyncData ({ $content }) {
-  //   const cities = await $content('cities')
-  //     .sortBy('name_mm', 'asc')
-  //     .fetch();
-  //   const zones = await $content('zones')
-  //     .sortBy('name_mm', 'asc')
-  //     .fetch();
-  //   return { cities, zones };
-  // },
-  // async asyncData ({ $axios }) {
-  //   const zones = await $axios.$get('http://gladhouse_backend.test/api/zones');
-  //   return { zones };
-  // },
-  async fetch () {
-    const zones = await this.$api.getZonesList(this);
-    this.zones = zones;
-  },
-  data: () => {
-    return {
-      zones: [],
-      search: '',
-      headers: [
-        { text: 'Name', value: 'name_mm' },
-        { text: 'City Name', value: 'city.name_mm' },
-        { text: 'Actions', value: 'actions' }
-      ]
-    };
-  },
-  methods: {
-    onCreate () {
-      this.$emit('createForm');
+    components: {
+        ZoneForm
     },
-    onEdit (item) {
-      this.$emit('editForm', item);
+    // async asyncData ({ $content }) {
+    //   const cities = await $content('cities')
+    //     .sortBy('name_mm', 'asc')
+    //     .fetch();
+    //   const zones = await $content('zones')
+    //     .sortBy('name_mm', 'asc')
+    //     .fetch();
+    //   return { cities, zones };
+    // },
+    // async asyncData ({ $axios }) {
+    //   const zones = await $axios.$get('http://gladhouse_backend.test/api/zones');
+    //   return { zones };
+    // },
+    async fetch () {
+        const zones = await this.$api.getZonesList(this);
+        this.zones = zones;
+    },
+    data: () => {
+        return {
+            zones: [],
+            search: '',
+            headers: [
+                { text: 'Name', value: 'name_mm' },
+                { text: 'City Name', value: 'city.name_mm' },
+                { text: 'Actions', value: 'actions' }
+            ]
+        };
+    },
+    methods: {
+        onCreate () {
+            this.$emit('createForm');
+        },
+        onEdit (item) {
+            this.$emit('editForm', item);
+        }
     }
-  }
 };
 </script>

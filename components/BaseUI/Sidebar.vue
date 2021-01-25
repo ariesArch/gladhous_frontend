@@ -47,64 +47,64 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Sidebar',
-  props: {
-    expandOnHover: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data: () => ({
-    items: [
-      {
-        title: 'Dashboard',
-        icon: 'mdi-view-dashboard',
-        to: '/opt_dashboard'
-      },
+    name: 'Sidebar',
+    props: {
+        expandOnHover: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: () => ({
+        items: [
+            {
+                title: 'Dashboard',
+                icon: 'mdi-view-dashboard',
+                to: '/opt_dashboard'
+            },
 
-      {
-        title: 'Profile',
-        icon: 'mdi-account-circle',
-        to: '/pages/profile'
-      },
+            {
+                title: 'Profile',
+                icon: 'mdi-account-circle',
+                to: '/pages/profile'
+            },
 
-      {
-        title: 'Alerts',
-        icon: 'mdi-alert',
-        to: '/pages/alerts'
-      },
+            {
+                title: 'Alerts',
+                icon: 'mdi-alert',
+                to: '/pages/alerts'
+            },
 
-      {
-        title: 'Icons',
-        icon: 'mdi-emoticon',
-        to: '/pages/icons'
-      },
+            {
+                title: 'Icons',
+                icon: 'mdi-emoticon',
+                to: '/pages/icons'
+            },
 
-      {
-        title: 'Basic Table',
-        icon: 'mdi-table-column-width',
-        to: '/pages/tables-simple'
-      }
-    ]
-  }),
-  computed: {
-    ...mapState(['SidebarColor', 'SidebarBg']),
-    Sidebar_drawer: {
-      get () {
-        return this.$store.state.Sidebar_drawer;
-      },
-      set (val) {
-        this.$store.commit('SET_SIDEBAR_DRAWER', val);
-      }
-    }
-  },
-  watch: {
-    '$vuetify.breakpoint.smAndDown' (val) {
-      this.$emit('update:expandOnHover', !val);
-    }
-  },
+            {
+                title: 'Basic Table',
+                icon: 'mdi-table-column-width',
+                to: '/pages/tables-simple'
+            }
+        ]
+    }),
+    computed: {
+        ...mapState(['SidebarColor', 'SidebarBg']),
+        Sidebar_drawer: {
+            get () {
+                return this.$store.state.Sidebar_drawer;
+            },
+            set (val) {
+                this.$store.commit('SET_SIDEBAR_DRAWER', val);
+            }
+        }
+    },
+    watch: {
+        '$vuetify.breakpoint.smAndDown' (val) {
+            this.$emit('update:expandOnHover', !val);
+        }
+    },
 
-  methods: {}
+    methods: {}
 };
 </script>
 <style lang="scss">

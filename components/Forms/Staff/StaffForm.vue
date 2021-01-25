@@ -83,40 +83,40 @@
 </template>
 <script>
 export default {
-  data () {
-    return {
-      isOpenDialog: false,
-      dialogTitle: 'Create New Staff',
-      staff: {
-        city_id: '',
-        zone_id: '',
-        branch_id: '',
-        department_id: '',
-        role_id: '',
-        stafftype_id: ''
-      }
-    };
-  },
-  mounted () {
-    this.cities = this.$parent.cities;
-    this.zones = this.$parent.zones;
-    this.departments = this.$parent.departments;
-    this.branches = this.$parent.branches;
-    this.roles = this.$parent.roles;
-    this.staff_types = this.$parent.$parent.staff_types;
-    this.$parent.$on('createForm', () => {
-      this.isOpenDialog = true;
-    });
-    this.$parent.$on('editForm', (item) => {
-      this.staff = item;
-      this.dialogTitle = `Edit staff  (${item.name})`;
-      this.isOpenDialog = true;
-    });
-  },
-  methods: {
-    SaveForm () {
-      this.isOpenDialog = false;
+    data () {
+        return {
+            isOpenDialog: false,
+            dialogTitle: 'Create New Staff',
+            staff: {
+                city_id: '',
+                zone_id: '',
+                branch_id: '',
+                department_id: '',
+                role_id: '',
+                stafftype_id: ''
+            }
+        };
+    },
+    mounted () {
+        this.cities = this.$parent.cities;
+        this.zones = this.$parent.zones;
+        this.departments = this.$parent.departments;
+        this.branches = this.$parent.branches;
+        this.roles = this.$parent.roles;
+        this.staff_types = this.$parent.$parent.staff_types;
+        this.$parent.$on('createForm', () => {
+            this.isOpenDialog = true;
+        });
+        this.$parent.$on('editForm', (item) => {
+            this.staff = item;
+            this.dialogTitle = `Edit staff  (${item.name})`;
+            this.isOpenDialog = true;
+        });
+    },
+    methods: {
+        SaveForm () {
+            this.isOpenDialog = false;
+        }
     }
-  }
 };
 </script>

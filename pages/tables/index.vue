@@ -33,51 +33,51 @@
 <script>
 import TableForm from '@/components/Forms/Table/TableForm.vue';
 export default {
-  components: {
-    TableForm
-  },
-  async asyncData ({ $content }) {
-    const tables = await $content('tables')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const cities = await $content('cities')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const zones = await $content('zones')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const branches = await $content('branches')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-    const staffs = await $content('staffs')
-      .sortBy('name_mm', 'asc')
-      .fetch();
-
-    return { tables, branches, cities, zones, staffs };
-  },
-  data: () => {
-    return {
-      search: '',
-      headers: [
-        { text: 'Name', value: 'name' },
-        { text: 'Number', value: 'table_no' },
-        { text: 'Max_Capacity', value: 'max_capacity' },
-        { text: 'Waiter', value: 'staff.staff_name' },
-        { text: 'Branch', value: 'branch.branch_name' },
-        { text: 'City', value: 'city.city_name' },
-        { text: 'Zone', value: 'zone.zone_name' },
-        { text: 'Description', value: 'description' },
-        { text: 'Actions', value: 'actions' }
-      ]
-    };
-  },
-  methods: {
-    onCreate () {
-      this.$emit('createForm');
+    components: {
+        TableForm
     },
-    onEdit (item) {
-      this.$emit('editForm', item);
+    async asyncData ({ $content }) {
+        const tables = await $content('tables')
+            .sortBy('name_mm', 'asc')
+            .fetch();
+        const cities = await $content('cities')
+            .sortBy('name_mm', 'asc')
+            .fetch();
+        const zones = await $content('zones')
+            .sortBy('name_mm', 'asc')
+            .fetch();
+        const branches = await $content('branches')
+            .sortBy('name_mm', 'asc')
+            .fetch();
+        const staffs = await $content('staffs')
+            .sortBy('name_mm', 'asc')
+            .fetch();
+
+        return { tables, branches, cities, zones, staffs };
+    },
+    data: () => {
+        return {
+            search: '',
+            headers: [
+                { text: 'Name', value: 'name' },
+                { text: 'Number', value: 'table_no' },
+                { text: 'Max_Capacity', value: 'max_capacity' },
+                { text: 'Waiter', value: 'staff.staff_name' },
+                { text: 'Branch', value: 'branch.branch_name' },
+                { text: 'City', value: 'city.city_name' },
+                { text: 'Zone', value: 'zone.zone_name' },
+                { text: 'Description', value: 'description' },
+                { text: 'Actions', value: 'actions' }
+            ]
+        };
+    },
+    methods: {
+        onCreate () {
+            this.$emit('createForm');
+        },
+        onEdit (item) {
+            this.$emit('editForm', item);
+        }
     }
-  }
 };
 </script>
