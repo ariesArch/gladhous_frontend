@@ -27,6 +27,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    <v-btn color="info" @click="logout">Logout</v-btn>
   </v-app-bar>
 </template>
 <script>
@@ -63,7 +64,10 @@ export default {
     methods: {
         ...mapMutations({
             setSidebarDrawer: 'SET_SIDEBAR_DRAWER'
-        })
+        }),
+        logout () {
+            return this.$auth.logout();
+        }
     }
 };
 </script>
