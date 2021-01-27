@@ -91,7 +91,7 @@ export default {
     methods: {
         async saveZone () {
             const { data } = await this.$api.createNewZone(this, this.zone);
-            console.log(data);
+            this.$parent.zones.push(data.data);
             this.isOpenDialog = false;
         }
     }

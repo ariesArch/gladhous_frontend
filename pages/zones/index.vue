@@ -108,13 +108,8 @@ export default {
                 ]
             };
         },
-        methods: {
-            onCreate () {
-                this.$emit('createForm');
-            },
-            onEdit (item) {
-                this.$emit('editForm', item);
-            }
+        onEdit (item) {
+            this.$emit('editForm', item);
         }
     }
 };

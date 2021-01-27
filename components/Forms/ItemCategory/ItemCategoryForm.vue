@@ -83,7 +83,7 @@ export default {
     methods: {
         async saveItemCategory () {
             const { data } = await this.$api.createNewItemCategory(this, this.item_category);
-            console.log(data);
+            this.$parent.itemcategories.push(data.data);
             this.isOpenDialog = false;
         }
     }

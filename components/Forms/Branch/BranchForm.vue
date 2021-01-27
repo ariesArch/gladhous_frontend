@@ -127,7 +127,7 @@ export default {
     methods: {
         async saveBranch () {
             const { data } = await this.$api.createNewBranch(this, this.branch);
-            console.log(data);
+            this.$parent.branches.push(data.data);
             this.isOpenDialog = false;
         }
     }

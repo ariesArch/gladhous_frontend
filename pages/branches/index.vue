@@ -63,6 +63,7 @@ export default {
                 { text: 'City Name', value: 'city.name_mm' },
                 { text: 'Name', value: 'name' },
                 { text: 'Name_mm', value: 'name_mm' },
+                { text: 'Description', value: 'description' },
                 { text: 'Actions', value: 'actions', sortable: false }
             ]
         };
@@ -96,13 +97,8 @@ export default {
                 ]
             };
         },
-        methods: {
-            onCreate () {
-                this.$emit('createForm');
-            },
-            onEdit (item) {
-                this.$emit('editForm', item);
-            }
+        onEdit (item) {
+            this.$emit('editForm', item);
         }
     }
 };
