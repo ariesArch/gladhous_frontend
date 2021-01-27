@@ -81,7 +81,8 @@ export default {
     methods: {
         async saveDepartment () {
             const { data } = await this.$api.createNewDepartment(this, this.department);
-            console.log(data);
+            this.$parent.departments.push(data.data);
+            // console.log(data);
             this.isOpenDialog = false;
         }
     }

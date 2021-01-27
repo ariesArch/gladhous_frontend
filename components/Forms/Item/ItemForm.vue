@@ -155,7 +155,7 @@ export default {
         this.itemcagetories = itemcagetories;
         const itemsubcategories = await this.$api.getItemSubCategoriesList(this).then(response => response.data);
         this.itemsubcategories = itemsubcategories;
-    // console.log(itemcagetories);
+        // console.log(itemsubcategories);
     },
     data () {
         return {
@@ -184,8 +184,9 @@ export default {
     methods: {
         async saveItem () {
             const { data } = await this.$api.createNewItem(this, this.item);
-            console.log(data);
-            this.isOpenDialog = true;
+            // console.log(data);
+            this.$parent.items.push(data.data);
+            this.isOpenDialog = false;
         }
     }
 };

@@ -87,39 +87,8 @@ export default {
         onCreate () {
             this.$emit('createForm');
         },
-        // async asyncData ({ $content, params }) {
-        //   const cities = await $content('cities', params.slug)
-        //     .sortBy('createdAt', 'desc')
-        //     .fetch();
-        //   console.log(cities);
-        //   return { cities };
-        // },
-        // async asyncData ({$$axios}) {
-        //   const cities = await $axios.$get('http://gladhouse_backend.local/api/cities');
-        //   return { cities };
-        // },
-        async fetch () {
-            const cities = await this.$api.getCitiesList(this);
-            this.cities = cities;
-        },
-        data: () => {
-            return {
-                cities: [],
-                search: '',
-                headers: [
-                    { text: 'Name', value: 'name_mm' },
-                    { text: 'Name_En', value: 'name_en' },
-                    { text: 'Actions', value: 'actions', sortable: false }
-                ]
-            };
-        },
-        methods: {
-            onCreate () {
-                this.$emit('createForm');
-            },
-            onEdit (item) {
-                this.$emit('editForm', item);
-            }
+        onEdit (item) {
+            this.$emit('editForm', item);
         }
     }
 };
