@@ -82,7 +82,8 @@ export default {
     methods: {
         async SaveRole () {
             const { data } = await this.$api.createNewRole(this, this.roles);
-            console.log(data);
+            this.$parent.roles.push(data.data);
+            // console.log(data);
             this.isOpenDialog = false;
         }
     }

@@ -104,7 +104,8 @@ export default {
     methods: {
         async SaveItemSubCategory () {
             const { data } = await this.$api.createNewItemSubCategory(this, this.item_sub_categories);
-            console.log(data);
+            this.$parent.itemsubcategories.push(data.data);
+            // console.log(data);
             this.isOpenDialog = false;
         }
     }
